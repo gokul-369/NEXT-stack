@@ -9,8 +9,8 @@ export async function connect() {
     });
     connection.on("error", (err) => {
       console.log("Mongo DB threw error" + err);
+      process.exit();
     });
-    process.exit();
   } catch (error: any) {
     console.log("something went wrong");
     console.log(error.message);
