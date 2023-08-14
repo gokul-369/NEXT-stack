@@ -10,7 +10,7 @@ import InputField from "../components/InputField";
 import LoadingButton from "../components/LoadingButton";
 import CustomToast from "../components/CustomToast";
 
-export default function signUpPage() {
+export default function SignUpPage() {
   const [load, setLoad] = useState(false);
   const {
     formState: { errors },
