@@ -14,61 +14,75 @@ var warning = (
   <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z" />
 );
 
+/* tailwind colors
+text-green-500
+bg-green-200
+hover:bg-green-300
+text-red-500
+bg-red-200
+hover:bg-red-300
+text-orange-500
+bg-orange-200
+hover:bg-orange-300
+text-blue-500
+bg-blue-200
+hover:bg-blue-300
+
+*/
 function CustomToast({
   variant,
   message,
   onClose,
   buttonText,
+  toastObject,
 }: {
   variant: string;
   message: string;
   onClose: React.MouseEventHandler<HTMLButtonElement>;
   buttonText: string;
+  toastObject: any;
 }) {
   const [btnTheme, setBtnTheme] = useState({
     svg: <></>,
     color: "",
-    bgColor: "",
   });
 
   useEffect(() => {
     if (variant === "success") {
       setBtnTheme({
         svg: success,
-        color: "text-green-500",
-        bgColor: "bg-green-100",
+        color: "green",
       });
     } else if (variant === "error") {
       setBtnTheme({
         svg: error,
-        color: "text-red-500",
-        bgColor: "bg-red-300",
+        color: "red",
       });
     } else if (variant === "warning") {
       setBtnTheme({
         svg: warning,
-        color: "text-orange-500",
-        bgColor: "bg-orange-300",
+        color: "orange",
       });
     } else if (variant === "info") {
       setBtnTheme({
         svg: info,
-        color: "text-blue-500",
-        bgColor: "bg-blue-300",
+        color: "blue",
       });
     }
   }, []);
 
   return (
     <div
-      className="w-auto bg-white border rounded-md shadow-lg dark:bg-gray-800 dark:border-gray-700"
+      className={`w-auto bg-white border rounded-md shadow-lg dark:bg-gray-800 dark:border-gray-700  ${
+        toastObject.visible ? "animate-enter" : "animate-leave"
+      }`}
       role="alert"
     >
       {" "}
       <div className="flex justify-between items-center p-4">
         <div className="flex-shrink-0">
           <svg
-            className={`${btnTheme.color} h-6 w-6 mt-0.5`}
+            className={`text-${btnTheme.color}-500 h-6 w-6 mt-0.5`}
             xmlns="http://www.w3.org/2000/svg"
             width="16"
             height="16"
@@ -82,7 +96,7 @@ function CustomToast({
           <p className="text-lg text-gray-700 dark:text-gray-400">{message}</p>
         </div>
         <button
-          className={`${btnTheme.bgColor} text-sm px-2 py-1 ${btnTheme.color} font-semibold rounded-md ml-4 transition-all 
+          className={`bg-${btnTheme.color}-200 text-sm px-2 py-1 text-${btnTheme.color}-500 font-semibold rounded-md ml-4 transition-all hover:bg-${btnTheme.color}-300
          `}
           onClick={onClose}
         >

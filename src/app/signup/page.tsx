@@ -29,7 +29,8 @@ export default function SignUpPage() {
       <CustomToast
         variant={variant}
         message={message}
-        buttonText="Ok"
+        buttonText="OK"
+        toastObject={t}
         onClose={() => {
           if (!redirect) {
             toast.dismiss(t.id);
