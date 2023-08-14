@@ -1,12 +1,14 @@
 "use client";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
-import toast, { Toaster } from "react-hot-toast";
+import { useRouter } from "next/navigation";
+import { toast, Toaster } from "react-hot-toast";
 import axios from "axios";
 
 import LandingWrapper from "../components/LandingWrapper";
 import InputField from "../components/InputField";
 import LoadingButton from "../components/LoadingButton";
+import CustomToast from "../components/CustomToast";
 
 export default function signUpPage() {
   const [load, setLoad] = useState(false);
@@ -15,18 +17,41 @@ export default function signUpPage() {
     handleSubmit,
     control,
   } = useForm();
+  const router = useRouter();
 
+  function toastify(
+    message: string,
+    variant: string,
+    redirect: boolean,
+    path: string
+  ): void {
+    toast.custom((t: any) => (
+      <CustomToast
+        variant={variant}
+        message={message}
+        buttonText="Ok"
+        onClose={() => {
+          if (!redirect) {
+            toast.dismiss(t.id);
+          } else {
+            toast.dismiss(t.id);
+            router.push(path);
+          }
+        }}
+      />
+    ));
+  }
   const submit = async (data: unknown) => {
     setLoad(true);
     const res = await axios.post("/api/users/signup", data);
     if (res.data.status === 200) {
-      toast.success(res.data.message);
+      toastify(res.data.message, "success", true, "./login");
     } else {
-      toast.error(res.data.message);
+      toastify(res.data.message, "warning", false, "");
     }
     try {
     } catch (error: any) {
-      toast.error(error.message);
+      toastify(res.data.message, "error", false, "");
     } finally {
       setLoad(false);
     }
@@ -48,7 +73,7 @@ export default function signUpPage() {
   };
   return (
     <>
-      <Toaster />
+      <Toaster toastOptions={{ duration: Infinity }} />
       <LandingWrapper>
         <div className="h-screen px-14 flex items-center flex-col justify-center">
           <p className="text-3xl text-blue-600 font-bold">Sign in to App</p>
