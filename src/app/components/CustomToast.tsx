@@ -80,7 +80,7 @@ function CustomToast({
     >
       {" "}
       <div className="flex justify-between items-center p-4">
-        <div className="flex-shrink-0">
+        <div className="flex items-center flex-shrink-0">
           <svg
             className={`text-${btnTheme.color}-500 h-6 w-6 mt-0.5`}
             xmlns="http://www.w3.org/2000/svg"
@@ -91,9 +91,11 @@ function CustomToast({
           >
             {btnTheme.svg}
           </svg>
-        </div>
-        <div className="ml-3">
-          <p className="text-lg text-gray-700 dark:text-gray-400">{message}</p>
+          <div className="ml-4 break-words">
+            <p className="text-base text-gray-700 dark:text-gray-400">
+              {message}
+            </p>
+          </div>
         </div>
         <button
           className={`bg-${btnTheme.color}-200 text-sm px-2 py-1 text-${btnTheme.color}-500 font-semibold rounded-md ml-4 transition-all hover:bg-${btnTheme.color}-300

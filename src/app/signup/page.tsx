@@ -9,6 +9,11 @@ import LandingWrapper from "../components/LandingWrapper";
 import InputField from "../components/InputField";
 import LoadingButton from "../components/LoadingButton";
 import CustomToast from "../components/CustomToast";
+import {
+  emailConfig,
+  userNameConfig,
+  passwordConfig,
+} from "@/helpers/settings";
 
 export default function SignUpPage() {
   const [load, setLoad] = useState(false);
@@ -43,41 +48,27 @@ export default function SignUpPage() {
     ));
   }
   const submit = async (data: unknown) => {
-    setLoad(true);
-    const res = await axios.post("/api/users/signup", data);
-    if (res.data.status === 200) {
-      toastify(res.data.message, "success", true, "./login");
-    } else {
-      toastify(res.data.message, "warning", false, "");
-    }
     try {
+      setLoad(true);
+      const res = await axios.post("/api/users/signup", data);
+      if (res.data.status === 200) {
+        toastify(res.data.message, "success", true, "./login");
+      } else {
+        toastify(res.data.message, "warning", false, "");
+      }
     } catch (error: any) {
-      toastify(res.data.message, "error", false, "");
+      toastify(error.message, "error", false, "");
     } finally {
       setLoad(false);
     }
   };
 
-  const emailConfig = {
-    required: { value: true, message: "Email ID is Required" },
-    pattern: { value: /.+@.+/, message: "Invalid Email ID" },
-  };
-  const userNameConfig = {
-    required: { value: true, message: "User Name is Required" },
-  };
-  const passwordConfig = {
-    required: { value: true, message: "Password is required" },
-    minLength: {
-      value: 6,
-      message: "Password must be atleast 6 characters",
-    },
-  };
   return (
     <>
       <Toaster toastOptions={{ duration: Infinity }} />
       <LandingWrapper>
         <div className="h-screen px-14 flex items-center flex-col justify-center">
-          <p className="text-3xl text-blue-600 font-bold">Sign in to App</p>
+          <p className="text-3xl text-blue-600 font-bold">Regsiter New User</p>
           <form
             className=" w-96 mt-6"
             noValidate
