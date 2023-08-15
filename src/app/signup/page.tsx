@@ -14,6 +14,7 @@ import {
   userNameConfig,
   passwordConfig,
 } from "@/helpers/settings";
+import Link from "next/link";
 
 export default function SignUpPage() {
   const [load, setLoad] = useState(false);
@@ -68,7 +69,7 @@ export default function SignUpPage() {
       <Toaster toastOptions={{ duration: Infinity }} />
       <LandingWrapper>
         <div className="h-screen px-14 flex items-center flex-col justify-center">
-          <p className="text-3xl text-blue-600 font-bold">Regsiter New User</p>
+          <p className="text-3xl text-blue-600 font-bold">Sign Up</p>
           <form
             className=" w-96 mt-6"
             noValidate
@@ -103,6 +104,15 @@ export default function SignUpPage() {
               buttonClassName="bg-blue-500 hover:bg-blue-700 text-white font-bold  mt-4"
               buttonText="Sign Up"
             />
+            <div className="text-gray-400 text-center font-medium text-sm mt-3 w-full">
+              <span>Already registered ? then </span>
+              <Link
+                href="/login"
+                className="text-blue-500 hover:text-blue-700 "
+              >
+                Login
+              </Link>
+            </div>
           </form>
         </div>
       </LandingWrapper>

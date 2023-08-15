@@ -29,8 +29,6 @@ function InputField({
   errors: FieldErrors<FieldValues>;
   control: Control<FieldValues, any>;
 }) {
-  console.log(errors);
-
   return (
     <Controller
       name={inputName}

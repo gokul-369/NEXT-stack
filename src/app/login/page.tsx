@@ -10,6 +10,7 @@ import InputField from "../components/InputField";
 import LoadingButton from "../components/LoadingButton";
 import { emailConfig, passwordConfig } from "@/helpers/settings";
 import CustomToast from "../components/CustomToast";
+import Link from "next/link";
 
 export default function LoginPage() {
   const [load, setLoad] = useState(false);
@@ -64,7 +65,7 @@ export default function LoginPage() {
       <Toaster toastOptions={{ duration: Infinity }} />
       <LandingWrapper>
         <div className="h-screen px-14 flex items-center flex-col justify-center">
-          <p className="text-3xl text-blue-600 font-bold">Sign In</p>
+          <p className="text-3xl text-blue-600 font-bold">Login</p>
           <form
             className=" w-96 mt-6"
             noValidate
@@ -86,10 +87,28 @@ export default function LoginPage() {
               inputConfig={passwordConfig}
               control={control}
             />
+            <div className="text-gray-400 flex justify-between font-medium mt-4 w-full  text-sm">
+              <span>
+                New here ? then{" "}
+                <Link
+                  href="/signup"
+                  className="text-blue-500 hover:text-blue-700 "
+                >
+                  Sign Up
+                </Link>
+              </span>
+
+              <Link
+                href="/forgotpassword"
+                className="text-blue-500 hover:text-blue-700"
+              >
+                Forgot your password ?
+              </Link>
+            </div>
             <LoadingButton
               load={load}
               buttonClassName="bg-blue-500 hover:bg-blue-700 text-white font-bold  mt-4"
-              buttonText="Sign In"
+              buttonText="Login"
             />
           </form>
         </div>
