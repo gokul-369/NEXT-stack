@@ -1,14 +1,13 @@
 "use client";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
-import { useRouter } from "next/navigation";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
 
 import LandingWrapper from "../components/LandingWrapper";
 import InputField from "../components/InputField";
 import LoadingButton from "../components/LoadingButton";
-import { emailConfig, passwordConfig } from "@/helpers/settings";
+import { emailConfig } from "@/helpers/settings";
 import CustomToast from "../components/CustomToast";
 import Link from "next/link";
 
@@ -19,7 +18,6 @@ export default function LoginPage() {
     handleSubmit,
     control,
   } = useForm();
-  const router = useRouter();
   function toastify(
     message: string,
     variant: string,
@@ -35,9 +33,6 @@ export default function LoginPage() {
         onClose={() => {
           if (!redirect) {
             toast.dismiss(t.id);
-          } else {
-            toast.dismiss(t.id);
-            router.push(path);
           }
         }}
       />
@@ -46,11 +41,13 @@ export default function LoginPage() {
   const submit = async (data: unknown) => {
     try {
       setLoad(true);
-      const res = await axios.post("/api/auth/login", data);
+      console.log(data);
+
+      const res = await axios.post("/api/auth/forgotpassword/verifyuser", data);
       if (res.data.status === 200) {
-        router.push("/profile");
+        toastify(res.data.message, "success", false, "");
       } else if (res.data.status === 204) {
-        toastify(res.data.message, "info", false, "");
+        toastify(res.data.message, "warning", false, "");
       } else {
         toastify(res.data.message, "error", false, "");
       }
@@ -65,7 +62,10 @@ export default function LoginPage() {
       <Toaster toastOptions={{ duration: Infinity }} />
       <LandingWrapper>
         <div className="h-screen px-14 flex items-center flex-col justify-center">
-          <p className="text-3xl text-blue-600 font-bold">Login</p>
+          <p className="text-3xl text-blue-600 font-bold">Verify Email</p>
+          <span className="text-gray-400 flex justify-center font-medium mt-4 w-full  text-sm">
+            To reset your password you need to verify your Email
+          </span>
           <form
             className=" w-96 mt-6"
             noValidate
@@ -79,37 +79,20 @@ export default function LoginPage() {
               inputConfig={emailConfig}
               control={control}
             />
-            <InputField
-              labelName="Password"
-              inputName="password"
-              inputType="password"
-              errors={errors}
-              inputConfig={passwordConfig}
-              control={control}
-            />
-            <div className="text-gray-400 flex justify-between font-medium mt-4 w-full  text-sm">
-              <span>
-                New here ? then{" "}
-                <Link
-                  href="/signup"
-                  className="text-blue-500 hover:text-blue-700 "
-                >
-                  Sign Up
-                </Link>
-              </span>
-
-              <Link
-                href="/verifymail"
-                className="text-blue-500 hover:text-blue-700"
-              >
-                Forgot your password ?
-              </Link>
-            </div>
             <LoadingButton
               load={load}
               buttonClassName="bg-blue-500 hover:bg-blue-700 text-white font-bold  mt-4"
-              buttonText="Login"
+              buttonText="Verify Email"
             />
+            <div className="text-gray-400 flex justify-center font-medium mt-4 w-full  text-sm">
+              Back to
+              <Link
+                href="/login"
+                className="text-blue-500 hover:text-blue-700 ms-2"
+              >
+                Login
+              </Link>
+            </div>
           </form>
         </div>
       </LandingWrapper>

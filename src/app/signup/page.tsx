@@ -51,7 +51,7 @@ export default function SignUpPage() {
   const submit = async (data: unknown) => {
     try {
       setLoad(true);
-      const res = await axios.post("/api/users/signup", data);
+      const res = await axios.post("/api/auth/signup", data);
       if (res.data.status === 200) {
         toastify(res.data.message, "success", true, "./login");
       } else {
@@ -76,7 +76,7 @@ export default function SignUpPage() {
             onSubmit={handleSubmit(submit)}
           >
             <InputField
-              labelName="E-mail"
+              labelName="Email ID"
               inputName="email"
               inputType="email"
               errors={errors}
