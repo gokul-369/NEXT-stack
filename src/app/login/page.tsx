@@ -8,7 +8,7 @@ import toast, { Toaster } from "react-hot-toast";
 import LandingWrapper from "../components/LandingWrapper";
 import InputField from "../components/InputField";
 import LoadingButton from "../components/LoadingButton";
-import { emailConfig, passwordConfig } from "@/helpers/settings";
+import { emailConfig, passwordConfig } from "@/helpers/constants";
 import CustomToast from "../components/CustomToast";
 import Link from "next/link";
 
@@ -43,7 +43,7 @@ export default function LoginPage() {
       />
     ));
   }
-  const submit = async (data: unknown) => {
+  const submit = async (data: object) => {
     try {
       setLoad(true);
       const res = await axios.post("/api/auth/login", data);

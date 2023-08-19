@@ -12,3 +12,15 @@ export const passwordConfig = {
     message: "Password must be atleast 6 characters",
   },
 };
+export const configConstants = {
+  FORGOT_PASSWORD: "FORGOTPASSWORD",
+};
+export const mailConfig = {
+  host: "smtp.rediffmail.com",
+  port: 587,
+  auth: {
+    user: process.env.FROM_MAIL,
+    pass: process.env.FROM_MAIL_PASSWORD,
+  },
+  secure: true,
+};

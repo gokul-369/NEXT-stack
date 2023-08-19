@@ -13,7 +13,7 @@ import {
   emailConfig,
   userNameConfig,
   passwordConfig,
-} from "@/helpers/settings";
+} from "@/helpers/constants";
 import Link from "next/link";
 
 export default function SignUpPage() {
@@ -48,7 +48,7 @@ export default function SignUpPage() {
       />
     ));
   }
-  const submit = async (data: unknown) => {
+  const submit = async (data: object) => {
     try {
       setLoad(true);
       const res = await axios.post("/api/auth/signup", data);

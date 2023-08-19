@@ -25,8 +25,7 @@ const userSchema = new mongoose.Schema({
   },
   forgotPasswordToken: String,
   forgotPasswordTokenExpiry: Date,
-  verifyToken: String,
-  verifyTokenExpiry: Date,
+  profilePicture: String,
 });
 
 const myDB = mongoose.connection.useDb("auth");
