@@ -24,6 +24,6 @@ export const mailConfig = {
   },
   secure: true,
   tls: {
-    ciphers: "TLSv1.2", // Specify the desired TLS version
+    ciphers: "SSLv3", // Specify the desired TLS version
   },
 };
