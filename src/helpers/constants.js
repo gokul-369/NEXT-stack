@@ -1,3 +1,5 @@
+// import { string, object, ref } from "yup";
+
 export const emailConfig = {
   required: { value: true, message: "Email ID is Required" },
   pattern: { value: /.+@.+/, message: "Invalid Email ID" },
@@ -16,14 +18,36 @@ export const configConstants = {
   FORGOT_PASSWORD: "FORGOTPASSWORD",
 };
 export const mailConfig = {
-  host: "smtp.rediffmail.com",
-  port: 587,
+  service: "hotmail",
   auth: {
     user: process.env.FROM_MAIL,
     pass: process.env.FROM_MAIL_PASSWORD,
   },
-  secure: true,
-  tls: {
-    ciphers: "SSLv3", // Specify the desired TLS version
-  },
 };
+// export const formSchema = {
+//   password: string()
+//     .required("Password is required")
+//     .min(6, "Password must be at least 6 characters"),
+//   confirmPassword: string()
+//     .required("Confirm Password is required")
+//     .min(6, "Password must be at least 6 characters")
+//     .oneOf([ref("password")], "Passwords must match"),
+//   userName: string().required("User Name is required"),
+//   email: string().email("Inavalid Email ID").required("Email ID is required"),
+// };
+// export const signupValidationSchema = object().shape({
+//   email: formSchema.email,
+//   userName: formSchema.userName,
+//   password: formSchema.password,
+// });
+// export const loginValidationSchema = object().shape({
+//   email: formSchema.email,
+//   password: formSchema.password,
+// });
+// export const verifyMailSchema = object().shape({
+//   email: formSchema.email,
+// });
+// export const forgotPasswordSchemas = object().shape({
+//   password: formSchema.password,
+//   confirmPassword: formSchema.confirmPassword,
+// });

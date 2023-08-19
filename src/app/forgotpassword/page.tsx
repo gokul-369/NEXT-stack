@@ -84,7 +84,7 @@ export default function ForgotPasswordPage() {
             />
             <InputField
               labelName="Retype Password"
-              inputName="retypepassword"
+              inputName="repassword"
               inputType="password"
               errors={errors}
               inputConfig={passwordConfig}
@@ -93,7 +93,7 @@ export default function ForgotPasswordPage() {
             <LoadingButton
               load={load}
               buttonClassName="bg-blue-500 hover:bg-blue-700 text-white font-bold  mt-4"
-              buttonText="Reset Password"
+              buttonText="Verify Email"
             />
             <div className="text-gray-400 flex justify-center font-medium mt-4 w-full  text-sm">
               Back to

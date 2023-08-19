@@ -1,6 +1,4 @@
 import nodemailer from "nodemailer";
-import User from "@/models/userModal";
-import bcryptjs from "bcryptjs";
 import { configConstants, mailConfig } from "./constants";
 
 export const sendMail = async ({
@@ -15,19 +13,6 @@ export const sendMail = async ({
   token: string;
 }) => {
   try {
-    // const hashedToken = await bcryptjs.hash(email.toString(), 10);
-    // const alphanumericHash = hashedToken.replace(/[^a-zA-Z0-9]/g, "");
-    // const now = new Date();
-    // const expiry = new Date(now.getTime() + 10 * 60 * 1000);
-    // if (emailType === configConstants.FORGOT_PASSWORD) {
-    //   await User.findOneAndUpdate(
-    //     { email },
-    //     {
-    //       forgotPasswordToken: alphanumericHash,
-    //       forgotPasswordTokenExpiry: expiry,
-    //     }
-    //   );
-    // }
     const transport = nodemailer.createTransport(mailConfig);
 
     const mailOptions = {
