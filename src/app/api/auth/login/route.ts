@@ -42,7 +42,7 @@ export async function POST(request: NextRequest) {
     });
     response.cookies.set("token", token, {
       httpOnly: true,
-      secure: true,
+      path: "/",
     });
     return response;
   } catch (error: any) {
