@@ -10,7 +10,6 @@ export async function GET(request: NextRequest) {
   try {
     // get userID from token
     const userID = await getDataFromToken(request);
-
     // get user info based on ID
     const userInfo = await User.findById(userID).select("-password -isAdmin");
     if (userInfo) {
@@ -26,6 +25,8 @@ export async function GET(request: NextRequest) {
       });
     }
   } catch (error: any) {
+    console.log(error);
+
     return NextResponse.json({
       message: error.message,
       status: 500,
