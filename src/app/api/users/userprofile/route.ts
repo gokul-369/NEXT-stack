@@ -9,7 +9,7 @@ connect();
 export async function GET(request: NextRequest) {
   try {
     // get userID from token
-    const userID = await getDataFromToken(request);
+    const userID = await getDataFromToken(request.cookies.get("token")?.value);
 
     // get user info based on ID
     const userInfo = await User.findById(userID).select("-password -isAdmin");
