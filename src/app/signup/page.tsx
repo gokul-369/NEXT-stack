@@ -70,7 +70,7 @@ export default function SignUpPage() {
                 <span>Already registered ? then </span>
                 <Link
                   href="/login"
-                  className="text-blue-500 hover:text-blue-700 "
+                  className="text-blue-500 hover:text-blue-700"
                 >
                   Login
                 </Link>
