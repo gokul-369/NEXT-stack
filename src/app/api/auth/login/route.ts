@@ -1,8 +1,8 @@
-import { connect } from "@/Database/dbConfig";
 import { NextRequest, NextResponse } from "next/server";
-import bcryptjs from "bcryptjs";
 import jwt from "jsonwebtoken";
+import bcryptjs from "bcryptjs";
 
+import { connect } from "@/Database/dbConfig";
 import User from "@/models/userModal";
 
 connect();
@@ -27,7 +27,7 @@ export async function POST(request: NextRequest) {
         status: 400,
       });
     }
-    // create JWT
+    // create JWT and set cookie
     const tokenData = {
       id: user._id,
       userName: user.userName,

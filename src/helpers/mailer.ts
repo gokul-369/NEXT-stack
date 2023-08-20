@@ -1,5 +1,5 @@
 import nodemailer from "nodemailer";
-import { configConstants, mailConfig } from "./constants";
+import { configConstants, mailConfig } from "./configs";
 
 export const sendMail = async ({
   email,

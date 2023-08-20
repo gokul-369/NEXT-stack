@@ -16,7 +16,7 @@ export default function ProfileLayout({
   const logOut = async () => {
     try {
       await axios.get("api/auth/logout");
-      router.push("/");
+      router.push("/login");
     } catch (error: any) {
       toast.error(error.message);
     }

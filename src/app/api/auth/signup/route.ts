@@ -1,17 +1,17 @@
-import { connect } from "@/Database/dbConfig";
 import { NextRequest, NextResponse } from "next/server";
 import bcryptjs from "bcryptjs";
 
+import { connect } from "@/Database/dbConfig";
 import User from "@/models/userModal";
 
 connect();
 
 export async function POST(request: NextRequest) {
   try {
-    const reqBody = await request.json();
-    const { userName, email, password } = reqBody;
-    //   check user already exists
+    const requestBody = await request.json();
+    const { userName, email, password } = requestBody;
 
+    //   check user already exists
     if (await User.findOne({ email })) {
       return NextResponse.json({
         message: "This Email Id is already registered with us",
@@ -27,6 +27,7 @@ export async function POST(request: NextRequest) {
     const salt = await bcryptjs.genSalt(10);
     const hashedPassword = await bcryptjs.hash(password, salt);
 
+    // save new user
     const newUser = new User({
       userName,
       email,

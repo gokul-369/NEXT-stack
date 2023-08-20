@@ -1,11 +1,5 @@
 import React from "react";
-import {
-  FieldErrors,
-  FieldValues,
-  RegisterOptions,
-  Controller,
-  Control,
-} from "react-hook-form";
+import { Controller, useFormContext } from "react-hook-form";
 
 /* 
 focus:border-red-500;
@@ -18,22 +12,17 @@ function InputField({
   labelName,
   inputName,
   inputType,
-  inputConfig,
-  errors,
-  control,
 }: {
   labelName: string;
   inputName: string;
   inputType: string;
-  inputConfig: RegisterOptions<FieldValues, string> | undefined;
-  errors: FieldErrors<FieldValues>;
-  control: Control<FieldValues, any>;
 }) {
+  const { control, formState } = useFormContext();
+
   return (
     <Controller
       name={inputName}
       control={control}
-      rules={inputConfig}
       render={({ field }) => (
         <div className="h-24">
           <label
@@ -46,7 +35,7 @@ function InputField({
             type={inputType}
             className={`mt-1 block w-full px-3 py-2 bg-neutral-100 border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400
       focus:outline-none  focus:bg-white focus:ring-1  invalid:bg-white ${
-        errors[inputName]
+        formState.errors[inputName]
           ? "focus:border-red-500 focus:ring-red-500"
           : "focus:border-sky-500 focus:ring-sky-500 "
       }
@@ -54,8 +43,10 @@ function InputField({
             autoComplete="off"
             {...field}
           />
-          {errors[inputName] && (
-            <Error message={errors[inputName]!["message"]!?.toString()!} />
+          {formState.errors[inputName] && (
+            <Error
+              message={formState.errors[inputName]!["message"]!?.toString()!}
+            />
           )}
         </div>
       )}

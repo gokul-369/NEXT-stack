@@ -1,9 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
-import User from "@/models/userModal";
+import bcryptjs from "bcryptjs";
+
+import { configConstants } from "@/helpers/configs";
 import { connect } from "@/Database/dbConfig";
 import { sendMail } from "@/helpers/mailer";
-import { configConstants } from "@/helpers/constants";
-import bcryptjs from "bcryptjs";
+import User from "@/models/userModal";
 
 connect();
 

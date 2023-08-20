@@ -1,48 +1,24 @@
 "use client";
-import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { useForm, FormProvider } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
 import axios from "axios";
-import toast, { Toaster } from "react-hot-toast";
+import { Toaster } from "react-hot-toast";
+import Link from "next/link";
 
 import LandingWrapper from "../components/LandingWrapper";
 import InputField from "../components/InputField";
 import LoadingButton from "../components/LoadingButton";
-import { emailConfig, passwordConfig } from "@/helpers/constants";
-import CustomToast from "../components/CustomToast";
-import Link from "next/link";
+import { toastify } from "../components/CustomToast";
+import { loginValidationSchema } from "@/helpers/configs";
 
 export default function LoginPage() {
   const [load, setLoad] = useState(false);
-  const {
-    formState: { errors },
-    handleSubmit,
-    control,
-  } = useForm();
+  const methods = useForm({
+    resolver: yupResolver(loginValidationSchema),
+  });
   const router = useRouter();
-  function toastify(
-    message: string,
-    variant: string,
-    redirect: boolean,
-    path: string
-  ): void {
-    toast.custom((t: any) => (
-      <CustomToast
-        variant={variant}
-        message={message}
-        buttonText="OK"
-        toastObject={t}
-        onClose={() => {
-          if (!redirect) {
-            toast.dismiss(t.id);
-          } else {
-            toast.dismiss(t.id);
-            router.push(path);
-          }
-        }}
-      />
-    ));
-  }
   const submit = async (data: object) => {
     try {
       setLoad(true);
@@ -66,51 +42,47 @@ export default function LoginPage() {
       <LandingWrapper>
         <div className="h-screen px-14 flex items-center flex-col justify-center">
           <p className="text-3xl text-blue-600 font-bold">Login</p>
-          <form
-            className=" w-96 mt-6"
-            noValidate
-            onSubmit={handleSubmit(submit)}
-          >
-            <InputField
-              labelName="Email ID"
-              inputName="email"
-              inputType="email"
-              errors={errors}
-              inputConfig={emailConfig}
-              control={control}
-            />
-            <InputField
-              labelName="Password"
-              inputName="password"
-              inputType="password"
-              errors={errors}
-              inputConfig={passwordConfig}
-              control={control}
-            />
-            <div className="text-gray-400 flex justify-between font-medium mt-4 w-full  text-sm">
-              <span>
-                New here ? then{" "}
-                <Link
-                  href="/signup"
-                  className="text-blue-500 hover:text-blue-700 "
-                >
-                  Sign Up
-                </Link>
-              </span>
+          <FormProvider {...methods}>
+            <form
+              className=" w-96 mt-6"
+              noValidate
+              onSubmit={methods.handleSubmit(submit)}
+            >
+              <InputField
+                labelName="Email ID"
+                inputName="email"
+                inputType="email"
+              />
+              <InputField
+                labelName="Password"
+                inputName="password"
+                inputType="password"
+              />
+              <div className="text-gray-400 flex justify-between font-medium mt-4 w-full  text-sm">
+                <span>
+                  New here ? then{" "}
+                  <Link
+                    href="/signup"
+                    className="text-blue-500 hover:text-blue-700 "
+                  >
+                    Sign Up
+                  </Link>
+                </span>
 
-              <Link
-                href="/verifymail"
-                className="text-blue-500 hover:text-blue-700"
-              >
-                Forgot your password ?
-              </Link>
-            </div>
-            <LoadingButton
-              load={load}
-              buttonClassName="bg-blue-500 hover:bg-blue-700 text-white font-bold  mt-4"
-              buttonText="Login"
-            />
-          </form>
+                <Link
+                  href="/verifymail"
+                  className="text-blue-500 hover:text-blue-700"
+                >
+                  Forgot your password ?
+                </Link>
+              </div>
+              <LoadingButton
+                load={load}
+                buttonClassName="bg-blue-500 hover:bg-blue-700 text-white font-bold  mt-4"
+                buttonText="Login"
+              />
+            </form>
+          </FormProvider>
         </div>
       </LandingWrapper>
     </>
