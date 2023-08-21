@@ -24,6 +24,7 @@ export default function LoginPage() {
       setLoad(true);
       const res = await axios.post("/api/auth/login", data);
       if (res.data.status === 200) {
+        sessionStorage.setItem("token", res.data.token);
         router.push("/profile");
       } else if (res.data.status === 204) {
         toastify(res.data.message, "info", false, "");

@@ -11,7 +11,9 @@ export default function Profile() {
   }, []);
 
   const getUser = async () => {
-    const res = await axios.get("/api/auth/userprofile");
+    const res = await axios.get("/api/users/userprofile", {
+      headers: { Authorization: `${sessionStorage.getItem("token")}` },
+    });
     setUserData(res.data.data);
   };
   return (
