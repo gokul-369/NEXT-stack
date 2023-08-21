@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-
+import { cookies } from "next/headers";
 import User from "@/models/userModal";
 import { getDataFromToken } from "@/helpers/getUserById";
 import { connect } from "@/Database/dbConfig";
@@ -8,10 +8,9 @@ connect();
 
 export async function GET(request: NextRequest) {
   try {
+    console.log(cookies().get("token")?.value);
     // get userID from token
-    const userID = await getDataFromToken(
-      request.cookies.get("token")?.value || ""
-    );
+    const userID = await getDataFromToken(cookies().get("token")?.value || "");
 
     // get user info based on ID
     const userInfo = await User.findById(userID).select("-password -isAdmin");
