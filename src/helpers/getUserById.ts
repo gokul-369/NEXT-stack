@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
 
-export const getDataFromToken = async (token: any) => {
+export const getDataFromToken = (token: any) => {
   try {
     // const encToken = request.cookies.get("token")?.value || "";
     console.log(token);
