@@ -44,9 +44,12 @@ import { connect } from "@/Database/dbConfig";
 
 connect();
 
+export const dynamic = "force-dynamic";
 export async function GET(request: NextRequest) {
   try {
-    // const userId = await getDataFromToken(request);
+    const userId = await getDataFromToken(request);
+    console.log(userId);
+
     const id = request.nextUrl.searchParams.get("id");
     const user = await User.findOne({ _id: id }).select(
       "-password -isAdmin -forgotPasswordToken -forgotPasswordTokenExpiry"
