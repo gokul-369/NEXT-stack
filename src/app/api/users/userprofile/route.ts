@@ -51,7 +51,7 @@ export async function GET(request: NextRequest) {
     console.log(userId);
 
     const id = request.nextUrl.searchParams.get("id");
-    const user = await User.findOne({ _id: id }).select(
+    const user = await User.findOne({ _id: userId }).select(
       "-password -isAdmin -forgotPasswordToken -forgotPasswordTokenExpiry"
     );
     return NextResponse.json({
