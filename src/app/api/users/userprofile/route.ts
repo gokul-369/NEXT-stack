@@ -46,8 +46,11 @@ connect();
 
 export async function GET(request: NextRequest) {
   try {
-    const userId = await getDataFromToken(request);
-    const user = await User.findOne({ _id: userId }).select("-password");
+    // const userId = await getDataFromToken(request);
+    const id = request.nextUrl.searchParams.get("id");
+    const user = await User.findOne({ _id: id }).select(
+      "-password -isAdmin -forgotPasswordToken -forgotPasswordTokenExpiry"
+    );
     return NextResponse.json({
       mesaaage: "User found",
       data: user,

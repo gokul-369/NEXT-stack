@@ -24,7 +24,7 @@ export default function LoginPage() {
       setLoad(true);
       const res = await axios.post("/api/auth/login", data);
       if (res.data.status === 200) {
-        router.push("/profile");
+        router.push(`/profile/${res.data.user._id}`);
       } else if (res.data.status === 204) {
         toastify(res.data.message, "info", false, "");
       } else {
