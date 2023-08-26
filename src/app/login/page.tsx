@@ -7,10 +7,10 @@ import axios from "axios";
 import { Toaster } from "react-hot-toast";
 import Link from "next/link";
 
-import LandingWrapper from "../../components/LandingWrapper";
-import InputField from "../../components/InputField";
-import LoadingButton from "../../components/LoadingButton";
-import { toastify } from "../../components/CustomToast";
+import LandingWrapper from "../components/LandingWrapper";
+import InputField from "../components/InputField";
+import LoadingButton from "../components/LoadingButton";
+import { toastify } from "../components/CustomToast";
 import { loginValidationSchema } from "@/helpers/configs";
 
 export default function LoginPage() {
@@ -31,7 +31,7 @@ export default function LoginPage() {
         toastify(res.data.message, "error", "");
       }
     } catch (error: any) {
-      toastify(error.message, "error",  "");
+      toastify(error.message, "error", "");
     } finally {
       setLoad(false);
     }

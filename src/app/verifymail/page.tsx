@@ -6,10 +6,10 @@ import { Toaster } from "react-hot-toast";
 import Link from "next/link";
 import { yupResolver } from "@hookform/resolvers/yup";
 
-import LandingWrapper from "@/components/LandingWrapper";
-import InputField from "@/components/InputField";
-import LoadingButton from "@/components/LoadingButton";
-import { toastify } from "@/components/CustomToast";
+import LandingWrapper from "@/app/components/LandingWrapper";
+import InputField from "@/app/components/InputField";
+import LoadingButton from "@/app/components/LoadingButton";
+import { toastify } from "@/app/components/CustomToast";
 import { verifyMailValidationSchema, configConstants } from "@/helpers/configs";
 
 export default function VerifiyMailPage() {
