@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import bcryptjs from "bcryptjs";
 
 import { configConstants } from "@/helpers/configs";
-import { connect } from "@/database/dbConfig";
+import { connect } from "@/databases/dbConfig";
 import { sendMail } from "@/helpers/mailer";
 import User from "@/models/userModal";
 import { userInfo } from "@/interfaces/userInfo";
