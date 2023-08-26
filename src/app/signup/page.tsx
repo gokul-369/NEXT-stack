@@ -6,10 +6,10 @@ import Link from "next/link";
 import axios from "axios";
 import { yupResolver } from "@hookform/resolvers/yup";
 
-import LandingWrapper from "../components/LandingWrapper";
-import InputField from "../components/InputField";
-import LoadingButton from "../components/LoadingButton";
-import { toastify } from "../components/CustomToast";
+import LandingWrapper from "@/app/components/LandingWrapper";
+import InputField from "@/app/components/InputField";
+import LoadingButton from "@/app/components/LoadingButton";
+import { toastify } from "@/app/components/CustomToast";
 import { signupValidationSchema } from "@/helpers/configs";
 
 export default function SignUpPage() {
@@ -23,12 +23,12 @@ export default function SignUpPage() {
       setLoad(true);
       const res = await axios.post("/api/auth/signup", data);
       if (res.data.status === 200) {
-        toastify(res.data.message, "success", true, "./login");
+        toastify(res.data.message, "success", "/login");
       } else {
-        toastify(res.data.message, "warning", false, "");
+        toastify(res.data.message, "warning", "");
       }
     } catch (error: any) {
-      toastify(error.message, "error", false, "");
+      toastify(error.message, "error", "");
     } finally {
       setLoad(false);
     }
@@ -70,7 +70,7 @@ export default function SignUpPage() {
                 <span>Already registered ? then </span>
                 <Link
                   href="/login"
-                  className="text-blue-500 hover:text-blue-700 "
+                  className="text-blue-500 hover:text-blue-700"
                 >
                   Login
                 </Link>

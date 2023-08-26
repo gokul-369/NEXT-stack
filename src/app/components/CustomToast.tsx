@@ -1,6 +1,6 @@
 "use client";
-import React, { useState, useEffect, ReactNode } from "react";
-import toast from "react-hot-toast";
+import { useState, useEffect } from "react";
+import toast, { Toast } from "react-hot-toast";
 import { useRouter } from "next/navigation";
 
 import { success, info, warning, error } from "@/helpers/configs";
@@ -18,26 +18,17 @@ text-blue-500
 bg-blue-200
 hover:bg-blue-300
 */
-export function toastify(
-  message: string,
-  variant: string,
-  redirect: boolean,
-  path: string
-): void {
-  toast.custom((t: any) => {
+export function toastify(message: string, variant: string, path: string): void {
+  toast.custom((t: Toast) => {
     return (
       <CustomToast
         variant={variant}
         message={message}
         buttonText="OK"
         toastObject={t}
-        onClose={() => {
-          if (!redirect) {
-            toast.dismiss(t.id);
-          } else {
-            toast.dismiss(t.id);
-            useRouter().push(path);
-          }
+        onClose={(): string => {
+          toast.dismiss(t?.id);
+          return path;
         }}
       />
     );
@@ -52,7 +43,7 @@ function CustomToast({
 }: {
   variant: string;
   message: string;
-  onClose: React.MouseEventHandler<HTMLButtonElement>;
+  onClose: Function;
   buttonText: string;
   toastObject: any;
 }) {
@@ -60,7 +51,7 @@ function CustomToast({
     svg: <></>,
     color: "",
   });
-
+  const router = useRouter();
   useEffect(() => {
     if (variant === "success") {
       setBtnTheme({
@@ -84,7 +75,12 @@ function CustomToast({
       });
     }
   }, []);
-
+  const handleClose = () => {
+    const redirect = onClose();
+    if (redirect) {
+      router.push(redirect);
+    }
+  };
   return (
     <div
       className={`w-auto bg-white border rounded-md shadow-lg dark:bg-gray-800 dark:border-gray-700  ${
@@ -114,7 +110,7 @@ function CustomToast({
         <button
           className={`bg-${btnTheme.color}-200 text-sm px-2 py-1 text-${btnTheme.color}-500 font-semibold rounded-md ml-4 transition-all hover:bg-${btnTheme.color}-300
          `}
-          onClick={onClose}
+          onClick={handleClose}
         >
           {buttonText}
         </button>

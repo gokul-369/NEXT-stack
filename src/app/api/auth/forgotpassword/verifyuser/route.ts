@@ -2,14 +2,15 @@ import { NextRequest, NextResponse } from "next/server";
 import bcryptjs from "bcryptjs";
 
 import { configConstants } from "@/helpers/configs";
-import { connect } from "@/Database/dbConfig";
+import { connect } from "@/database/dbConfig";
 import { sendMail } from "@/helpers/mailer";
 import User from "@/models/userModal";
+import { userInfo } from "@/interfaces/userInfo";
 
 connect();
 
 export async function POST(request: NextRequest) {
-  const requestBody = await request.json();
+  const requestBody: userInfo = await request.json();
   const { email, purpose } = requestBody;
   try {
     const user = await User.findOne({ email });

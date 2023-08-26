@@ -7,10 +7,10 @@ import { useForm, FormProvider } from "react-hook-form";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 
-import LandingWrapper from "../components/LandingWrapper";
-import InputField from "../components/InputField";
-import LoadingButton from "../components/LoadingButton";
-import { toastify } from "../components/CustomToast";
+import LandingWrapper from "@/app/components/LandingWrapper";
+import InputField from "@/app/components/InputField";
+import LoadingButton from "@/app/components/LoadingButton";
+import { toastify } from "@/app/components/CustomToast";
 import { forgotPasswordValidationSchema } from "@/helpers/configs";
 
 export default function ForgotPasswordPage() {
@@ -38,12 +38,12 @@ export default function ForgotPasswordPage() {
         token,
       });
       if (res.data.status === 200) {
-        toastify(res.data.message, "success", true, "/login");
+        toastify(res.data.message, "success", "/login");
       } else {
-        toastify(res.data.message, "error", false, "");
+        toastify(res.data.message, "error", "");
       }
     } catch (error: any) {
-      toastify(error.message, "error", false, "");
+      toastify(error.message, "error", "");
     } finally {
       setLoad(false);
     }

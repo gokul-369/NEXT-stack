@@ -6,10 +6,10 @@ import { Toaster } from "react-hot-toast";
 import Link from "next/link";
 import { yupResolver } from "@hookform/resolvers/yup";
 
-import LandingWrapper from "../components/LandingWrapper";
-import InputField from "../components/InputField";
-import LoadingButton from "../components/LoadingButton";
-import { toastify } from "../components/CustomToast";
+import LandingWrapper from "@/app/components/LandingWrapper";
+import InputField from "@/app/components/InputField";
+import LoadingButton from "@/app/components/LoadingButton";
+import { toastify } from "@/app/components/CustomToast";
 import { verifyMailValidationSchema, configConstants } from "@/helpers/configs";
 
 export default function VerifiyMailPage() {
@@ -26,14 +26,14 @@ export default function VerifiyMailPage() {
         purpose: configConstants.FORGOT_PASSWORD,
       });
       if (res.data.status === 200) {
-        toastify(res.data.message, "success", false, "");
+        toastify(res.data.message, "success", "");
       } else if (res.data.status === 204) {
-        toastify(res.data.message, "warning", false, "");
+        toastify(res.data.message, "warning", "");
       } else {
-        toastify(res.data.message, "error", false, "");
+        toastify(res.data.message, "error", "");
       }
     } catch (error: any) {
-      toastify(error.message, "error", false, "");
+      toastify(error.message, "error", "");
     } finally {
       setLoad(false);
     }
