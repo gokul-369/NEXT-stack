@@ -26,14 +26,14 @@ export default function VerifiyMailPage() {
         purpose: configConstants.FORGOT_PASSWORD,
       });
       if (res.data.status === 200) {
-        toastify(res.data.message, "success", false, "");
+        toastify(res.data.message, "success", "");
       } else if (res.data.status === 204) {
-        toastify(res.data.message, "warning", false, "");
+        toastify(res.data.message, "warning", "");
       } else {
-        toastify(res.data.message, "error", false, "");
+        toastify(res.data.message, "error", "");
       }
     } catch (error: any) {
-      toastify(error.message, "error", false, "");
+      toastify(error.message, "error", "");
     } finally {
       setLoad(false);
     }
