@@ -7,10 +7,10 @@ import { useForm, FormProvider } from "react-hook-form";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 
-import LandingWrapper from "../components/LandingWrapper";
-import InputField from "../components/InputField";
-import LoadingButton from "../components/LoadingButton";
-import { toastify } from "../components/CustomToast";
+import LandingWrapper from "../../components/LandingWrapper";
+import InputField from "../../components/InputField";
+import LoadingButton from "../../components/LoadingButton";
+import { toastify } from "../../components/CustomToast";
 import { forgotPasswordValidationSchema } from "@/helpers/configs";
 
 export default function ForgotPasswordPage() {

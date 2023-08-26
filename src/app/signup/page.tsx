@@ -6,10 +6,10 @@ import Link from "next/link";
 import axios from "axios";
 import { yupResolver } from "@hookform/resolvers/yup";
 
-import LandingWrapper from "../components/LandingWrapper";
-import InputField from "../components/InputField";
-import LoadingButton from "../components/LoadingButton";
-import { toastify } from "../components/CustomToast";
+import LandingWrapper from "../../components/LandingWrapper";
+import InputField from "../../components/InputField";
+import LoadingButton from "../../components/LoadingButton";
+import { toastify } from "../../components/CustomToast";
 import { signupValidationSchema } from "@/helpers/configs";
 
 export default function SignUpPage() {

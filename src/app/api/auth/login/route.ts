@@ -2,14 +2,15 @@ import { NextRequest, NextResponse } from "next/server";
 import jwt from "jsonwebtoken";
 import bcryptjs from "bcryptjs";
 
-import { connect } from "@/Database/dbConfig";
+import { connect } from "@/database/dbConfig";
 import User from "@/models/userModal";
+import { userInfo } from "@/interfaces/userInfo";
 
 connect();
 
 export async function POST(request: NextRequest) {
   try {
-    const requestBody = await request.json();
+    const requestBody: userInfo = await request.json();
     const { email, password } = requestBody;
     // check user if already exists
     const user = await User.findOne({ email });

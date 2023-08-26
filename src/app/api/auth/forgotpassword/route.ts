@@ -1,14 +1,15 @@
 import { NextRequest, NextResponse } from "next/server";
 import bcryptjs from "bcryptjs";
 
-import { connect } from "@/Database/dbConfig";
+import { connect } from "@/database/dbConfig";
 import User from "@/models/userModal";
+import { userInfo } from "@/interfaces/userInfo";
 
 connect();
 
 export async function POST(request: NextRequest) {
   try {
-    const requestBody = await request.json();
+    const requestBody: userInfo = await request.json();
     const { password, token } = requestBody;
 
     // check if token is valid if valid proceed

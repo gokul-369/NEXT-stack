@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect, ReactNode } from "react";
-import toast from "react-hot-toast";
+import toast, { Toast } from "react-hot-toast";
 import { useRouter } from "next/navigation";
 
 import { success, info, warning, error } from "@/helpers/configs";
@@ -24,7 +24,7 @@ export function toastify(
   redirect: boolean,
   path: string
 ): void {
-  toast.custom((t: any) => {
+  toast.custom((t: Toast) => {
     return (
       <CustomToast
         variant={variant}
@@ -33,9 +33,9 @@ export function toastify(
         toastObject={t}
         onClose={() => {
           if (!redirect) {
-            toast.dismiss(t.id);
+            toast.dismiss(t?.id);
           } else {
-            toast.dismiss(t.id);
+            toast.dismiss(t?.id);
             useRouter().push(path);
           }
         }}

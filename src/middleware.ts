@@ -23,5 +23,6 @@ export const config = {
     "/profile/:path*",
     "/verifymail",
     "/forgotpassword",
+    "/api/:path*",
   ],
 };

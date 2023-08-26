@@ -2,10 +2,10 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 
+import { userInfo } from "@/interfaces/userInfo";
+
 export default function Profile() {
-  const [userData, setUserData] = useState({
-    userName: "",
-  });
+  const [userData, setUserData] = useState<userInfo>();
   useEffect(() => {
     getUser();
   }, []);
