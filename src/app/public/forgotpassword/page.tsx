@@ -7,7 +7,6 @@ import { useForm, FormProvider } from "react-hook-form";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 
-import LandingWrapper from "@/app/components/LandingWrapper";
 import InputField from "@/app/components/InputField";
 import LoadingButton from "@/app/components/LoadingButton";
 import { toastify } from "@/app/components/CustomToast";
@@ -38,7 +37,7 @@ export default function ForgotPasswordPage() {
         token,
       });
       if (res.data.status === 200) {
-        toastify(res.data.message, "success", "/login");
+        toastify(res.data.message, "success", "/public/login");
       } else {
         toastify(res.data.message, "error", "");
       }
@@ -49,47 +48,41 @@ export default function ForgotPasswordPage() {
     }
   };
   return (
-    <>
+    <div className="h-screen px-14 flex items-center flex-col justify-center">
       <Toaster toastOptions={{ duration: Infinity }} />
-      <LandingWrapper>
-        <div className="h-screen px-14 flex items-center flex-col justify-center">
-          <p className="text-3xl text-blue-600 font-bold">
-            Reset Your Password
-          </p>
-          <FormProvider {...methods}>
-            <form
-              className=" w-96 mt-6"
-              noValidate
-              onSubmit={methods.handleSubmit(submit)}
+      <p className="text-3xl text-blue-600 font-bold">Reset Your Password</p>
+      <FormProvider {...methods}>
+        <form
+          className=" w-96 mt-6"
+          noValidate
+          onSubmit={methods.handleSubmit(submit)}
+        >
+          <InputField
+            labelName="New Password"
+            inputName="password"
+            inputType="password"
+          />
+          <InputField
+            labelName="Confirm Password"
+            inputName="confirmPassword"
+            inputType="password"
+          />
+          <LoadingButton
+            load={load}
+            buttonClassName="bg-blue-500 hover:bg-blue-700 text-white font-bold  mt-4"
+            buttonText="Reset Password"
+          />
+          <div className="text-gray-400 flex justify-center font-medium mt-4 w-full  text-sm">
+            Back to
+            <Link
+              href="/public/login"
+              className="text-blue-500 hover:text-blue-700 ms-2"
             >
-              <InputField
-                labelName="New Password"
-                inputName="password"
-                inputType="password"
-              />
-              <InputField
-                labelName="Confirm Password"
-                inputName="confirmPassword"
-                inputType="password"
-              />
-              <LoadingButton
-                load={load}
-                buttonClassName="bg-blue-500 hover:bg-blue-700 text-white font-bold  mt-4"
-                buttonText="Reset Password"
-              />
-              <div className="text-gray-400 flex justify-center font-medium mt-4 w-full  text-sm">
-                Back to
-                <Link
-                  href="/login"
-                  className="text-blue-500 hover:text-blue-700 ms-2"
-                >
-                  Login
-                </Link>
-              </div>
-            </form>
-          </FormProvider>
-        </div>
-      </LandingWrapper>
-    </>
+              Login
+            </Link>
+          </div>
+        </form>
+      </FormProvider>
+    </div>
   );
 }
