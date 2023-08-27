@@ -3,7 +3,12 @@ import { useState, useEffect } from "react";
 import toast, { Toast } from "react-hot-toast";
 import { useRouter } from "next/navigation";
 
-import { success, info, warning, error } from "@/helpers/configs";
+import {
+  CheckBadgeIcon,
+  XCircleIcon,
+  InformationCircleIcon,
+  ExclamationTriangleIcon,
+} from "@heroicons/react/24/solid";
 /* tailwind colors
 text-green-500
 bg-green-200
@@ -55,22 +60,22 @@ function CustomToast({
   useEffect(() => {
     if (variant === "success") {
       setBtnTheme({
-        svg: success,
+        svg: <CheckBadgeIcon />,
         color: "green",
       });
     } else if (variant === "error") {
       setBtnTheme({
-        svg: error,
+        svg: <XCircleIcon />,
         color: "red",
       });
     } else if (variant === "warning") {
       setBtnTheme({
-        svg: warning,
+        svg: <ExclamationTriangleIcon />,
         color: "orange",
       });
     } else if (variant === "info") {
       setBtnTheme({
-        svg: info,
+        svg: <InformationCircleIcon />,
         color: "blue",
       });
     }

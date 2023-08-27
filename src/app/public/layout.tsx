@@ -1,4 +1,8 @@
-function LandingWrapper({ children }: { children: React.ReactNode }) {
+export default function PublicLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <div className="grid sm:grid-cols-1  md:grid-cols-2 h-screen divide-x">
       <div className="hidden md:flex bg-gradient-to-r from-blue-600 to-blue-800  flex-col items-center justify-center text-white text-center shadow-xl shadow-blue">
@@ -19,5 +23,3 @@ function LandingWrapper({ children }: { children: React.ReactNode }) {
     </div>
   );
 }
-
-export default LandingWrapper;
