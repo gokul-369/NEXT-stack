@@ -1,15 +1,13 @@
+import Features from "./features";
 import Hero from "./hero";
+import About from "./about";
 
 export default function Home() {
   return (
     <>
       <Hero />
-      <section
-        id="about"
-        className="h-screen flex items-center justify-center bg-white"
-      >
-        Hwomie
-      </section>
+      <About />
+      <Features />
     </>
   );
 }
