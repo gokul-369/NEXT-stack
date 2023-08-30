@@ -50,7 +50,7 @@ export default async function Features() {
   return (
     <section
       id="features"
-      className="h-screen flex flex-col items-center justify-center bg-white"
+      className="h-auto md:h-screen flex flex-col items-center justify-center bg-white"
     >
       <span className="text-3xl font-medium">
         More than just a site builder
