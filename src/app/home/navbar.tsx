@@ -4,7 +4,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 // bg-transparent
-// backdrop-blur-md;
+// bg-white;
 export default function NaveBar() {
   const [backgroundTransparacy, setBackgroundTransparacy] = useState(0);
 
@@ -43,7 +43,7 @@ export default function NaveBar() {
   return (
     <nav
       className={`fixed font-sans  flex items-center justify-around w-full h-16 ${
-        backgroundTransparacy === 0 ? "bg-transparent" : "backdrop-blur-md"
+        backgroundTransparacy === 0 ? "bg-transparent" : "bg-white"
       }`}
     >
       <span className="ml-5 font-bold text-black">NAV</span>

@@ -17,7 +17,12 @@ export default async function About() {
         </span>
       </div>
       <div className="h-screen col-span-2 flex items-center justify-center">
-        imagery
+        <div className="grid grid-cols-4 w-96 gap-2">
+          <div className="col-span-2 h-40 bg-pink-200 rounded-md">1</div>
+          <div className="col-span-1 h-40 bg-pink-200 rounded-md">1</div>
+          <div className="col-span-1 h-40 bg-pink-200 rounded-md">1</div>
+          <div className="col-span-4 h-40 bg-pink-200 rounded-md">1</div>
+        </div>
       </div>
     </section>
   );
