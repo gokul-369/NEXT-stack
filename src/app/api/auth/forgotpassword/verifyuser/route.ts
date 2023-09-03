@@ -31,7 +31,7 @@ export async function POST(request: NextRequest) {
       }
 
       const mailerResponse = await sendMail({
-        email: "gokul369@outlook.com",
+        email,
         emailType: purpose,
         userName: user.userName,
         token: alphanumericHash,
