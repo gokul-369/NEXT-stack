@@ -27,25 +27,25 @@ export default async function About() {
           <Image
             src={image1}
             alt="Picture of the man"
-            className="col-span-2 h-40 object-cover rounded-md"
+            className="col-span-2 h-40 object-cover rounded-md transition duration-300 ease-in-out hover:scale-105"
             quality={50}
           />
           <Image
             src={image2}
             alt="Picture of the man"
-            className="col-span-1 h-40 object-cover rounded-md"
+            className="col-span-1 h-40 object-cover rounded-md transition duration-300 ease-in-out hover:scale-105"
             quality={50}
           />
           <Image
             src={image3}
             alt="Picture of the man"
-            className="col-span-1 h-40 object-cover rounded-md"
+            className="col-span-1 h-40 object-cover rounded-md transition duration-300 ease-in-out hover:scale-105"
             quality={50}
           />
           <Image
             src={image4}
             alt="Picture of the man"
-            className="col-span-4 h-40 object-cover rounded-md"
+            className="col-span-4 h-40 object-cover rounded-md transition duration-300 ease-in-out hover:scale-105"
             quality={50}
           />
         </div>
