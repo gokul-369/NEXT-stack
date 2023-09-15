@@ -4,6 +4,9 @@ import {
   CursorArrowRippleIcon,
   PaintBrushIcon,
 } from "@heroicons/react/24/outline";
+import Image from "next/image";
+import image5 from "../assets/dot.svg";
+
 export default async function Features() {
   const Cards = [
     {
@@ -50,7 +53,7 @@ export default async function Features() {
   return (
     <section
       id="features"
-      className="h-auto md:h-screen flex flex-col items-center justify-center bg-white"
+      className="h-auto md:h-screen flex flex-col items-center relative overflow-hidden justify-center bg-white"
     >
       <span className="text-3xl font-medium">
         More than just a site builder
@@ -59,9 +62,21 @@ export default async function Features() {
         We offer you more than site building tool, we also offer SEO solutions
         and on demand hosting services
       </span>
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-10 px-5 md:px-20  mt-10">
+      <Image
+        src={image5}
+        alt="1"
+        className="hidden md:block h-32 w-32 absolute left-4 bottom-24 opacity-30"
+        quality={50}
+      />
+      <div className="grid grid-cols-2 md:grid-cols-4 z-20 relative gap-2 md:gap-10 px-5 md:px-20  mt-10 ">
         {cards}
       </div>
+      <Image
+        src={image5}
+        alt="2"
+        className="hidden md:block h-32 w-32 absolute right-4 bottom-24 opacity-30"
+        quality={50}
+      />
     </section>
   );
 }

@@ -42,7 +42,7 @@ export default function NaveBar() {
   ));
   return (
     <nav
-      className={`fixed font-sans  flex items-center justify-around w-full h-16 ${
+      className={`fixed top-0 z-50 font-sans  flex items-center justify-around w-full h-16 ${
         backgroundTransparacy === 0 ? "bg-transparent" : "bg-white"
       }`}
     >

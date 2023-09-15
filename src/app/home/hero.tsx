@@ -7,7 +7,7 @@ import Image from "next/image";
 export default async function Hero() {
   return (
     <section className="h-screen flex items-center justify-center bg-gradient-to-b from-orange-200 from-10% via-orange-100 via-30% to-white to-90%">
-      <div className="flex  justify-around flex-wrap w-full md:px-40 px-10">
+      <div className="flex justify-around flex-wrap w-full md:px-40 px-10 ">
         <div
           className="w-full flex flex-col
           items-start justify-center md:w-2/4"

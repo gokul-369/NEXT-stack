@@ -8,9 +8,9 @@ export default async function About() {
   return (
     <section
       id="about"
-      className="h-auto md:h-screen grid sm:grid-cols-1  md:grid-cols-4 bg-slate-50"
+      className="h-auto md:h-screen grid sm:grid-cols-1  md:grid-cols-4 over bg-slate-50"
     >
-      <div className="h-screen col-span-2 flex flex-col items-center justify-center px-8">
+      <div className="h-screen col-span-2 flex flex-col items-center justify-center  px-8">
         <span className="text-5xl font-bold tracking-wide leading-tight">
           We <span className="text-orange-500 ">redefine</span> website building
         </span>
