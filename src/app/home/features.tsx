@@ -55,10 +55,11 @@ export default async function Features() {
       id="features"
       className="h-auto md:h-screen flex flex-col items-center relative overflow-hidden justify-center bg-white"
     >
-      <span className="text-3xl font-medium">
+      <span className="relative text-3xl font-medium text-center">
         More than just a site builder
+        <span className="absolute -bottom-3 h-[1.5px] bg-orange-400 transition-all w-1/3 rounded-lg left-1/3"></span>
       </span>
-      <span className="w-80 md:w-2/5 text-center text-sm mt-4 text-slate-400 break-words">
+      <span className="w-80 md:w-2/5 text-center text-sm mt-5 text-slate-400 break-words">
         We offer you more than site building tool, we also offer SEO solutions
         and on demand hosting services
       </span>
