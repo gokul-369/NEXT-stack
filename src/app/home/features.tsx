@@ -4,8 +4,6 @@ import {
   CursorArrowRippleIcon,
   PaintBrushIcon,
 } from "@heroicons/react/24/outline";
-import Image from "next/image";
-import image5 from "../assets/dot.svg";
 
 export default async function Features() {
   const Cards = [
@@ -53,31 +51,20 @@ export default async function Features() {
   return (
     <section
       id="features"
-      className="h-auto md:h-screen flex flex-col items-center relative overflow-hidden justify-center bg-white"
+      className="h-auto md:h-screen flex flex-col items-center relative overflow-hidden justify-center bg-white md:px-16"
     >
-      <span className="relative text-3xl font-medium text-center">
+      <span className="text-3xl font-medium text-center">
         More than just a site builder
-        <span className="absolute -bottom-3 h-[1.5px] bg-orange-400 transition-all w-1/3 rounded-lg left-1/3"></span>
       </span>
       <span className="w-80 md:w-2/5 text-center text-sm mt-5 text-slate-400 break-words">
         We offer you more than site building tool, we also offer SEO solutions
         and on demand hosting services
       </span>
-      <Image
-        src={image5}
-        alt="1"
-        className="hidden md:block h-32 w-32 absolute left-4 bottom-24 opacity-30"
-        quality={50}
-      />
-      <div className="grid grid-cols-2 md:grid-cols-4 z-20 relative gap-2 md:gap-10 px-5 md:px-20  mt-10 ">
+     
+      <div className="grid grid-cols-2 md:grid-cols-4 z-20 relative gap-2 md:gap-10 px-5 md:px-20  mt-10 mb-6 md:mb-0 ">
         {cards}
       </div>
-      <Image
-        src={image5}
-        alt="2"
-        className="hidden md:block h-32 w-32 absolute right-4 bottom-24 opacity-30"
-        quality={50}
-      />
+      
     </section>
   );
 }

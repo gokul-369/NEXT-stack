@@ -1,6 +1,5 @@
 "use client";
 
-// import { ArrowLongRightIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 // bg-transparent
@@ -24,12 +23,16 @@ export default function NaveBar() {
       link: "#home",
     },
     {
+      linkName: "features",
+      link: "#features",
+    },
+    {
       linkName: "about",
       link: "#about",
     },
     {
-      linkName: "features",
-      link: "#features",
+      linkName: "testimonials",
+      link: "#testimonials",
     },
   ];
   const menus = Menus.map((e) => (
@@ -47,7 +50,7 @@ export default function NaveBar() {
       }`}
     >
       <span className="ml-5 font-bold text-black">NAV</span>
-      <div className=" items-center justify-between text-black font-semibold text-sm tracking-wide uppercase w-72 hidden md:flex">
+      <div className=" items-center justify-between text-black font-semibold text-sm tracking-wide uppercase w-96 hidden md:flex">
         {menus}
       </div>
       <Link
@@ -55,7 +58,7 @@ export default function NaveBar() {
         href="/public/signup"
       >
         Sign Up
-        {/* <ArrowLongRightIcon className="ms-4 h-5 w-5" /> */}
+       
       </Link>
     </nav>
   );
