@@ -16,7 +16,7 @@ export default async function Clients() {
         quality={50}
       />
       <span className="text-base font-normal  text-orange-950">
-        Trusted by world's leading brands
+        Trusted by world&apos;s leading brands
       </span>
       <div className="mt-5 flex flex-wrap justify-between items-center w-full">
         <Image src={puma} alt="puma" />
